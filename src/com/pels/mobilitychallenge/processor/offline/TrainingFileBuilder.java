@@ -82,6 +82,9 @@ public class TrainingFileBuilder {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		//TODO Change to cmd args
+		// String inPath = args[1];
+		// String outPath = args[2];
 		String inPath = "/Users/cpels/Documents/workspace/fraunhofer/data/processed/";
 		String outPath = "/Users/cpels/Documents/workspace/fraunhofer/data/training/";
 		int wLen = 20;
