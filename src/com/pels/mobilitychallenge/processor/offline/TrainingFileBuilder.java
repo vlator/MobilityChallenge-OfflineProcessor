@@ -34,6 +34,7 @@ public class TrainingFileBuilder {
 	public void writeTrainingFile() throws FileNotFoundException{
 		if (inputDir.exists() && inputDir.isDirectory()) {
 			File[] filtered = inputDir.listFiles(new ProcessedFileFilter(windowLength));
+			System.out.println("Found " + filtered.length + " processed files for window length: " + windowLength);
 			writeTrainingFile(filtered);
 		}else{
 			throw new FileNotFoundException("Input directory not found!");
@@ -47,11 +48,12 @@ public class TrainingFileBuilder {
 			for (File f : filtered) {
 				List<String> temp = Files.readAllLines(f.toPath(), ENCODING);
 				temp.remove(0);
+				System.out.println(temp.size() + " lines in: " + f.getName() );
 				allLines.addAll(temp);
 			}
 			writeTrainingFile(allLines);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Error: Error creating training input file.");
 			e.printStackTrace();
 		}
 	}
@@ -61,7 +63,7 @@ public class TrainingFileBuilder {
 		output.getParentFile().mkdirs();
 	    Path path = output.toPath();
 	    Files.write(path, allLines, ENCODING);
-		
+		System.out.println("Success: Training input file created.");
 	}
 
 	class ProcessedFileFilter implements FilenameFilter {

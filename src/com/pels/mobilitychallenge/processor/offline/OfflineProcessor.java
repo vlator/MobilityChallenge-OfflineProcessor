@@ -39,7 +39,7 @@ public class OfflineProcessor {
 		File[] allInputFiles = inputDir.listFiles(new CustomFileFilterByExt(
 				"csv"));
 		for (File inputFile : allInputFiles) {
-			System.out.println("Processing: " + inputFile.getName());
+			System.out.println("\nProcessing: " + inputFile.getName());
 			process(inputFile);
 		}
 	}
@@ -66,7 +66,9 @@ public class OfflineProcessor {
 			List<FramedReadings> framed) {
 		String path = PROCESSED_OUTPUT_PATH + PROCESSED + wLen + "_"
 				+ filename;
-		System.out.println(path);
+//		System.out.println(path);
+		System.out.println(label + " Frames: " +  framed.size());
+		
 		File outputFile = new File(path);
 		BufferedWriter writer;
 		try {
